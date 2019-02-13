@@ -1,30 +1,30 @@
-const http = new Git;
-// Search Input
+// Init Github
+const github = new Git;
+// Init UI
+const ui = new UI;
 
+// Search input
 const searchUser = document.getElementById('searchUser');
-// Event Listener
-searchUser.addEventListener('keyup', function (e) {
 
-	// Get input Text
+// Search input event listener
+searchUser.addEventListener('keyup', (e) => {
+	// Get input text
 	const userText = e.target.value;
-	// Not blank
+
 	if (userText !== '') {
-		/// Make http call
-		http.get(userText)
-			.then(function (data) {
-				if (data.profile.message === "Not Found") {
-					// Show Alert
+		// Make http call
+		github.get(userText)
+			.then(data => {
+				if (data.profile.message === 'Not Found') {
+					// Show alert
 
 				} else {
-
+					// Show profile
+					ui.showProfile(data.profile);
 				}
 			})
-			.catch(function (err) {
-				console.log(err);
-			});
 	} else {
-		// clear profile
-	}
+		// Clear profile
 
-	// e.preventDefault();
-})
+	}
+}); 
