@@ -1,27 +1,30 @@
-// Init Github
-const github = new Github;
+const http = new Git;
+// Search Input
 
-// Search input
 const searchUser = document.getElementById('searchUser');
+// Event Listener
+searchUser.addEventListener('keyup', function (e) {
 
-// Search input event listener
-searchUser.addEventListener('keyup', (e) => {
-	// Get input text
+	// Get input Text
 	const userText = e.target.value;
-
+	// Not blank
 	if (userText !== '') {
-		// Make http call
-		github.getUser(userText)
-			.then(data => {
-				if (data.profile.message === 'Not Found') {
-					// Show alert
+		/// Make http call
+		http.get(userText)
+			.then(function (data) {
+				if (data.profile.message === "Not Found") {
+					// Show Alert
 
 				} else {
-					// Show profile
+
 				}
 			})
+			.catch(function (err) {
+				console.log(err);
+			});
 	} else {
-		// Clear profile
-
+		// clear profile
 	}
-}); 
+
+	// e.preventDefault();
+})
